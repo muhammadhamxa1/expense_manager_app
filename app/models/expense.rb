@@ -1,0 +1,3 @@
+class Expence < Transaction;
+
+end

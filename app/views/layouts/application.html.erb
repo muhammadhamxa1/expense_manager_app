@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ema</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    
+      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %> 
+  </head>
+
+  <body>
+
+       <div class="container-fluid">
+           <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+      <div class="row">
+        <div class="col-12">
+          <%= render partial:"layouts/navbar"%>
+          </div>
+          <div class="col-4">
+          </div>
+          <div class="col-4">
+                 <% if user_signed_in?%>
+                    <%= render partial:"layouts/dashboard"%>
+                    
+                    <% end %>
+                    
+          </div>
+          <div class="col-4">
+          </div>
+ 
+        </div> 
+      
+  
+      <div class="row">
+        <div class="col-12">
+
+          <%= yield %>
+        </div>
+      </div>
+
+     
+      
+     </div>
+  </body>
+</html>
