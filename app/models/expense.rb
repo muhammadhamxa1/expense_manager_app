@@ -1,3 +1,2 @@
-class Expence < Transaction;
-
+class Expense <  Transaction;
 end

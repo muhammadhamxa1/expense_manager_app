@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_01_164846) do
+ActiveRecord::Schema.define(version: 2021_09_03_072605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,12 +30,13 @@ ActiveRecord::Schema.define(version: 2021_09_01_164846) do
     t.string "type"
     t.integer "transaction_amount"
     t.string "transfer_for"
-    t.integer "transfer_id"
     t.string "category"
     t.string "transfer_from"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
+    t.bigint "account_id"
+    t.index ["account_id"], name: "index_transactions_on_account_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
   end
 
@@ -67,6 +68,7 @@ ActiveRecord::Schema.define(version: 2021_09_01_164846) do
   end
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "transactions", "accounts"
   add_foreign_key "transactions", "users"
   add_foreign_key "wallets", "users"
 end

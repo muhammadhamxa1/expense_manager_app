@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :transactions
   resources :wallets
   resources :accounts
+  resources :income, controller: "transactions", type: "income"
+  resources :expense, controller: "transactions", type: "expense"
+  resources :transfer, controller: "transactions", type: "transfer"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to:"public#homepage"
 
