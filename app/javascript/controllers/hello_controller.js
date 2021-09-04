@@ -6,8 +6,8 @@ export default class extends Controller {
   greet() {
     console.log("click")
   }
+//   static targets = ["heading"]
 }
-
 
 
 
