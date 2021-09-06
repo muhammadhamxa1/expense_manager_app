@@ -10,4 +10,8 @@ class User < ApplicationRecord
          has_many :incomes ,class_name: 'Income'
          has_many :transfers ,class_name: 'Transfer'
          delegate :expense,:income,:transfer,to: :transations
+        
+
+
 end
+

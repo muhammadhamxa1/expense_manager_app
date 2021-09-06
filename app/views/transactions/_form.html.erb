@@ -1,71 +1,145 @@
-<%= form_with(model: transaction) do |form| %>
-  <% if transaction.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
-
-      <ul>
-        <% transaction.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-<div class="row">
-  <div  class="col-sm-6"> 
-  <div class="from-group">
-    <%= form.label :type %>
-    <%= form.select :type ,['Expense', 'Income','Transfer']%>
-    <%# options_for_select([['Expense'], ['opt2']])
-     <% ['Expense', 'Income','Transfer']
-     <%= form.text_field :type , class:"form-control" %>  
-  </div>
-
-  <div class="from-group">
-    <%= form.label :transaction_amount %>
-    <%= form.number_field :transaction_amount, class:"form-control"  %>
-    
-  </div>
-
-
-  <div class="from-group btn-group dropend">
-    <%= form.label "transfer-to"%>
-    <%# byebug %>
-    <%= form.select :transfer_for, current_user.accounts.pluck(:accountname), class:"form-select"%>
-    <%@transaction.account_id=current_user.id%>
-     <%# @accounts.each do {|u| [ u.accountname] }  %>
-     <%# <button type="button" class="btn btn-secondary">
-     Select Bank
-    </button>
-    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-      <span class="visually-hidden">Toggle Dropright</span>
-    </button>
-    <ul class="dropdown-menu">
-       <% @accounts.each do |account| 
-         <%= form.select :account.accountname :transfer_for, class:"form-control" 
-        <li><%= account.accountname%/li> 
-       <% end 
-       
-    </ul> %>
-  </div>
-
   
+ 
+<div class="row">
+  <div class="col-4">
+        <ul class="nav nav-tabs justify-content-center nav-justified" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Expense</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Income</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">Transfer</button>
+          </li>
+        </ul>
 
-  <div class="from-group">
-    <%= form.label :category %>
-    <%= form.select :category,options_for_select(Transaction.categories .map {|key, value| [key.titleize, Transaction.categories.key(value)]}, @transaction.category), {}, class:"form-select"%>
-    <%# # options_for_select(Transaction.category.map {|key, value| [key.titleize, Transaction.category.key(value)]}, @transaction.category), {}, class:"form-select" %>
-     <%# <%= form.text_field :category  , class:"form-control"  %> 
-  </div>
+        <div class="tab-content" id="myTabContent">
 
-  <div class="from-group">
-    <%= form.label :transfer_from %>
-    <%= form.text_field :transfer_from  , class:"form-control"%>
-  </div>
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    
+                     <%= form_with(model: transaction) do |form| %>
+                          <% if transaction.errors.any? %>
+                            <div id="error_explanation">
+                              <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+                              <ul>
+                                <% transaction.errors.each do |error| %>
+                                  <li><%= error.full_message %></li>
+                                <% end %>
+                              </ul>
+                            </div>
+                          <% end %> 
+                        <div class="from-group">
+
+                           <%= form.hidden_field :type, value:"Expense"%>
+                      
+                          </div>
+                          <div class="from-group">
+                            <%= form.label "Enter Expense Amount" %>
+                            <%= form.number_field :transaction_amount, class:"form-control"  %>
+                            
+                          </div>
+                          <div class="from-group btn-group dropend">
+                            <%= form.label "Select Bank"%>
+                            <%# byebug %>
+                            <%= form.select :transfer_for, current_user.accounts.pluck(:accountname), class:"form-select"%>
+                            <%@transaction.account_id=current_user.id%>
+                          </div>
+
+                          <div class="from-group">
+                            <%= form.label :category %>
+                            <%= form.select :category,options_for_select(Transaction.categories .map {|key, value| [key.titleize, Transaction.categories.key(value)]}, @transaction.category), {}, class:"form-select"%>
+                          </div>
+                          <div class="actions">
+                            <%= form.submit %>
+                          </div>
+
+                          
+                          <% end %>
+                </div>
+
+
+
+
+
+                
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                          
+                <%= form_with(model: transaction) do |form| %>
+                          <% if transaction.errors.any? %>
+                            <div id="error_explanation">
+                              <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+
+                              <ul>
+                                <% transaction.errors.each do |error| %>
+                                  <li><%= error.full_message %></li>
+                                <% end %>
+                              </ul>
+                            </div>
+                          <% end %> 
+                    <div class="from-group">
+                      
+                        <%= form.hidden_field :type, value:"Income"%>
+                      </div>
+                      <div class="from-group">
+                      <%= form.label "Enter Income" %>
+                      <%= form.number_field :transaction_amount, class:"form-control"  %>
+                    </div>
+                    <div class="from-group btn-group dropend">
+                        <%= form.label "Select Bank"%>
+                        <%# byebug %>
+                        <%= form.select :transfer_for, current_user.accounts.pluck(:accountname), class:"form-select"%>
+                        <%@transaction.account_id=current_user.id%>
+                      </div> 
+                      <div class="actions">
+                      <%= form.submit %>
+                    </div>
+                  
+                  <% end %>
+                  
+                </div>
+
+
+
+
+                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                <%= form_with(model: transaction) do |form| %>
+                          <% if transaction.errors.any? %>
+                            <div id="error_explanation">
+                              <h2><%= pluralize(transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+
+                              <ul>
+                                <% transaction.errors.each do |error| %>
+                                  <li><%= error.full_message %></li>
+                                <% end %>
+                              </ul>
+                            </div>
+                          <% end %> 
+                      <div class="from-group">
+                        <%= form.hidden_field :type, value:"Transfer"%>
+                        </div> 
+
+                      <div class="from-group">
+                        <%= form.label :transfer_from %>
+                        <%= form.text_field :transfer_from  , class:"form-control"%>
+                      </div>
+                      <div class="actions">
+                        <%= form.submit %>
+                      </div>
+                           <% end %> 
+                   
+                </div>
+
+        </div>
+
+     </div>
+    </div>
+  
+ 
+
+ 
+
 
 
 

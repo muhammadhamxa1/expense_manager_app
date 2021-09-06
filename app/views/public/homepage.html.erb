@@ -1,8 +1,31 @@
-<div data-controller="hello">
-  <div class="btn btn-primary">Say Hello</div>
-</div>
+hello
 
 
-<div class="btn btn-primary" data-action="click->hello#greet">Say Hello</div>
 
-<%# <h1 data-target="hello.heading">This is the home page</h1> %>
+
+<%# <p>
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#transfer" aria-expanded="false" aria-controls="expense">transfer</button>
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#expense" aria-expanded="false" aria-controls="expense">Expense</button>
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#income" aria-expanded="false" aria-controls="income ">Income</button>
+</p>
+<div class="row">
+  <div class="col">
+    <div class="collapse multi-collapse" id="transfer">
+      <div class="card card-body">
+       im in Transfer
+      </div>
+    </div>
+
+    <div class="collapse multi-collapse" id="expense">
+      <div class="card card-body">
+       im in expense
+      </div>
+    </div>
+  
+    <div class="collapse multi-collapse" id="income">
+      <div class="card card-body">
+        im in income
+      </div>
+    </div>
+  </div>
+</div> %>
