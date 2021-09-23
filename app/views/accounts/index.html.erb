@@ -1,14 +1,14 @@
-<p id="notice"><%= notice %></p>
+
 
 <h1>Accounts</h1>
 
-<table>
-  <thead>
+<table class="table">
+  <thead class="table-dark">
     <tr>
-      <th>Accountnumber</th>
-      <th>Accountname</th>
-      <th>Accounttype</th>
-      <th>Accountbalance</th>
+      <th scope="col">Accountnumber</th>
+      <th scope="col">Accountname</th>
+      <th scope="col">Accounttype</th>
+      <th scope="col">Accountbalance</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,9 +20,9 @@
         <td><%= account.accountname %></td>
         <td><%= account.accounttype %></td>
         <td><%= account.accountbalance %></td>
-        <td><%= link_to 'Show', account %></td>
-        <td><%= link_to 'Edit', edit_account_path(account) %></td>
-        <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', account , class: 'btn btn-outline-info btn-xs' %></td>
+        <td><%= link_to 'Edit', edit_account_path(account), class: 'btn btn-outline-warning btn-xs'  %></td>
+        <td><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } , class: 'btn btn-outline-danger btn-xs'  %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,25 @@
 
 <br>
 
-<%= link_to 'New Account', new_account_path %>
+<%= link_to 'New Account', new_account_path ,class: 'btn btn-outline-dark btn-xs'%>
+
+
+<h1>Wallets</h1>
+
+<table class="table">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Walletbalance</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= @wallet.walletbalance %></td>
+      <td><%= link_to 'Show', @wallet , class: 'btn btn-outline-info btn-xs'%></td>
+      <td><%= link_to 'Edit', edit_wallet_path(@wallet) , class: 'btn btn-outline-warning btn-xs'%></td>
+      <%# <td><%= link_to 'Destroy', @wallet, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </tr>
+  </tbody>
+</table>

@@ -1,8 +1,9 @@
 class AccountPolicy < ApplicationPolicy
 
-    # def index?
-    #   current_user.id== account.user_id
-    # end
+    def index?
+      user.present?
+    end
+    
     def show?
       user.present? && user==record.user
     end

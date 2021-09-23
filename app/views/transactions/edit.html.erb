@@ -1,6 +1,7 @@
 <h1>Editing Transaction</h1>
 
+<%# <%= @transaction.transfer_from_id=@transaction.transfer_from_type%> 
 <%= render 'form', transaction: @transaction %>
 
-<%= link_to 'Show', @transaction %> |
-<%= link_to 'Back', transactions_path %>
+<%= link_to 'Show', @transaction,class: 'btn btn-outline-info btn-xs' %> |
+<%= link_to 'Back', transactions_path, class: 'btn btn-outline-success btn-xs'%>

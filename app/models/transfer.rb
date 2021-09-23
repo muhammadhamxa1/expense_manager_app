@@ -1,2 +1,2 @@
-class Transfer < Transaction; 
+class Transfer < Transaction
 end

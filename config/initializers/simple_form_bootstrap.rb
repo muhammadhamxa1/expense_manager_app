@@ -55,7 +55,7 @@ SimpleForm.setup do |config|
     b.optional :maxlength
     b.optional :minlength
     b.optional :pattern
-    b.optional :min_max
+    b.use :min_max
     b.optional :readonly
     b.use :label
     b.use :input, class: 'form-control', error_class: 'is-invalid', valid_class: 'is-valid'

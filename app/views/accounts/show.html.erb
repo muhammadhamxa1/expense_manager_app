@@ -1,24 +1,37 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Accountnumber:</strong>
-  <%= @account.accountnumber %>
-</p>
+<div class="row">
+  <div class="col-4">
+  </div>
+  <div class="col-4">
+  <table class="table">
+  
+  <tbody>
+    <tr>
+      <th scope="row">Accountnumber:</th>
+      <td><%= @account.accountnumber %></td>
+      
+    </tr>
+    <tr>
+      <th scope="row">Accountname:</th>
+      <td><%= @account.accountname %></td>
+      
+    </tr>
+    <tr>
+      <th scope="row">Accounttype:</th>
+      <td> <%= @account.accounttype %></td>
+    </tr>
+    <tr>
+      <th scope="row">Accountbalance:</th>
+      <td> <%= @account.accountbalance %></td>
+    </tr>
+  </tbody>
+</table>
+<%= link_to 'Edit', edit_account_path(@account) , class: 'btn btn-outline-warning btn-xs' %> | 
+<%= link_to 'Back', accounts_path ,class: 'btn btn-outline-success btn-xs'  %>
 
-<p>
-  <strong>Accountname:</strong>
-  <%= @account.accountname %>
-</p>
+  </div>
+  <div class="col-4">
+  </div>
+</div>
 
-<p>
-  <strong>Accounttype:</strong>
-  <%= @account.accounttype %>
-</p>
 
-<p>
-  <strong>Accountbalance:</strong>
-  <%= @account.accountbalance %>
-</p>
-
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>

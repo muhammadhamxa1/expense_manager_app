@@ -1,30 +1,50 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Type:</strong>
-  <%= @transaction.type %>
-</p>
-
-<p>
-  <strong>Transaction amount:</strong>
-  <%= @transaction.transaction_amount %>
-</p>
-
-<p>
-  <strong>Transfer for:</strong>
-  <%= @transaction.transfer_for %>
-</p>
 
 
-<p>
-  <strong>Category:</strong>
-  <%= @transaction.category %>
-</p>
 
-<p>
-  <strong>Transfer from:</strong>
-  <%= @transaction.transfer_from %>
-</p>
+<div class="row">
 
-<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
-<%= link_to 'Back', transactions_path %>
+  <div class="col-4">
+  </div>
+
+  <div class="col-4">
+  <table class="table">
+  
+  <tbody>
+    <tr>
+      <th scope="row">Type:</th>
+      <td><%= @transaction.type  %></td>
+    </tr>
+    <tr>
+      <th scope="row">Transaction amount:</th>
+      <td><%= @transaction.transaction_amount%></td>
+      
+    </tr>
+    <tr>
+      <th scope="row">Category:</th>
+      <td> <%= @transaction.category  %></td>
+    </tr>
+    <tr>
+      <th scope="row">Transfer From:</th>
+      <td> <%=  @transaction.transfer_from_type=="Account"? Account.find(@transaction.transfer_from_id).accountname : "Wallet"%></td>
+    </tr>
+    <tr>
+      <th scope="row">Transfer to:</th>
+      <td> <%=  @transaction.transfer_to_id.present? ? (@transaction.transfer_to_type == "Account" ? Account.find(@transaction.transfer_to_id).accountname : "Wallet") : "--" %></td>
+    </tr>
+    <tr>
+      <th scope="row">Date:</th>
+      <td> <%= @transaction.transaction_date %></td>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_transaction_path(@transaction)  , class: 'btn btn-outline-warning btn-xs' %> | 
+<%= link_to 'Back', transactions_path ,class: 'btn btn-outline-success btn-xs'  %>
+
+  </div>
+
+  <div class="col-4">
+  </div>
+
+</div>
+

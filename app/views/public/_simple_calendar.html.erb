@@ -1,0 +1,57 @@
+<div data-controller="transaction">
+  <div data-transaction-target="calender">
+    <h2>Add Expense</h2>
+    <%= month_calendar(start_date_param: :my_date) do |date| %>
+
+        <button class="btn btn-success btn-xs"  data-action="click->transaction#show_me" data-transaction-target="date"  data-value="<%=date%>">
+          <%=date.day%>   
+        </button>
+    <% end %>
+
+  </div>
+
+  <div class="d_none" data-transaction-target="modal" >
+    <%= simple_form_for @transaction do |form| %>
+              <% if @transaction.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+                  <ul>
+                    <% @transaction.errors.each do |error| %>
+                      <li><%= error.full_message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %> 
+
+          <div class="from-group">
+              <%= form.hidden_field :type, value:"Expense"%>
+          </div>
+
+          <div class="from-group">
+            <%= form.input :transaction_date, as: :hidden,  input_html: {'data-transaction-target': 'set_date'}%>
+            <%# <%= form.input :transfer_from_type, as: :hidden, input_html: {'data-transaction-target': 'hidden'}%> 
+          </div>
+
+          <div class="from-group">
+            <%= form.label "Enter Expense Amount" %>
+            <%= form.number_field :transaction_amount, required: true, class:"form-control" , min: 1 %>
+          </div>
+
+          <div class="from-group" data-action="change->transaction#great" >
+            <%= form.input :transfer_from_id, required: true,collection: @accounts_name,prompt: "select Bank", input_html:  {class: "form-select",'data-transaction-target': 'expenseTransferId'}%>
+            <%= form.input :transfer_from_type, as: :hidden, input_html: {'data-transaction-target': 'hiddenTransferType'}%>
+          </div>
+                  
+
+          <div class="from-group">
+            <%= form.label :category %>
+            <%= form.select :category,options_for_select(Transaction.categories.map {|key, value| [key.titleize, Transaction.categories.key(value)]}, @transaction.category), {}, class:"form-select"%>
+          </div>
+
+          <div class="actions">
+            <%= form.submit %>
+          </div>
+
+        <% end %>
+    </div>
+</div>

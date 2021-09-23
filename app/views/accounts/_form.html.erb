@@ -1,39 +1,47 @@
-<%= form_with(model: account) do |form| %>
-  <% if account.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(account.errors.count, "error") %> prohibited this account from being saved:</h2>
-
-      <ul>
-        <% account.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+   <% if @account.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@account.errors.count, "error") %> prohibited this account from being saved:</h2>
+        <ul>
+          <% @account.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %> 
+<%= simple_form_for @account do |form| %>
+  <div class="row">
+    <div class="col-4">
     </div>
-  <% end %>
+    <div class="col-4">
+      <div class="from-group">
+        <%= form.label :accountnumber %>
+        <%= form.number_field :accountnumber, required: true,class:"form-control", min: 1 %>
+      </div>
 
-  <div class="field">
-    <%= form.label :accountnumber %>
-    <%= form.number_field :accountnumber %>
-  </div>
+      <div class="from-group">
+        <%= form.label :accountname %>
+        <%= form.text_field :accountname ,required: true,class:"form-control"%>
+      </div>
 
-  <div class="field">
-    <%= form.label :accountname %>
-    <%= form.text_field :accountname %>
-  </div>
+      <div class="from-group">
+        <%= form.label :accounttype %>
+        <%= form.text_field :accounttype ,required: true,class:"form-control"%>
+      </div>
 
-  <div class="field">
-    <%= form.label :accounttype %>
-    <%= form.text_field :accounttype %>
-  </div>
+      <div class="from-group">
+        <%= form.label :accountbalance %>
+        <%= form.number_field :accountbalance,required: true,class:"form-control", min: 1 %>
+      </div>
 
-  <div class="field">
-    <%= form.label :accountbalance %>
-    <%= form.number_field :accountbalance %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+      <div class="actions">
+        <%= form.button :submit, class: 'btn btn-success' %>
+      </div>
+      
+    </div>
+    <div class="col-4">
+    </div>
   </div>
 <% end %>
+  
 
 

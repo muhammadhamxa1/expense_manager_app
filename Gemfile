@@ -29,7 +29,15 @@ gem 'devise'
 
 gem 'simple_form'
 
+gem "chartkick"
+
+# gem 'devise_invitable', '~> 2.0.0'
+
 gem 'pundit'
+
+gem "simple_calendar", "~> 2.4"
+
+gem 'devise_invitable', :git => 'git@github.com:scambra/devise_invitable.git'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

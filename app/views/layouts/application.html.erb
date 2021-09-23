@@ -9,43 +9,62 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
-    
-      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %> 
   </head>
 
   <body>
 
        <div class="container-fluid">
-           <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
+        
       <div class="row">
-        <div class="col-12">
-          <%= render partial:"layouts/navbar"%>
+      
+          <div class="col-12">
+            <%= render partial:"layouts/navbar"%>
           </div>
+
           <div class="col-4">
           </div>
+
           <div class="col-4">
-                 <% if user_signed_in?%>
-                    <%= render partial:"layouts/dashboard"%>
-                    
-                    <% end %>
-                    
+             <p class="notice"><%= notice %></p>
+             <p class="alert"><%= alert %></p>
+
+             <% if user_signed_in?%>
+               <%= render partial:"layouts/dashboard"%>
+             <% end %>   
+
           </div>
+
           <div class="col-4">
           </div>
- 
+
         </div> 
       
   
       <div class="row">
-        <div class="col-12">
-
-          <%= yield %>
-        </div>
-      </div>
-
-     
       
+        <% if user_signed_in?%>
+
+           <div class="col-12">
+             <%= yield %>
+           </div>
+
+        <% else %>
+
+          <div class="col-4">
+          </div>
+          
+          <div class="col-4 justify-center">
+            <%= yield %>
+          </div>
+
+          <div class="col-4">
+          </div>
+
+        <% end %>
+        
+      </div>
      </div>
   </body>
 </html>

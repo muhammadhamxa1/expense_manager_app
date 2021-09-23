@@ -1,26 +1,26 @@
 class AccountsController < ApplicationController
   before_action :set_account, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!
   # before_action :can_modify_post, only: %i[ show edit update destroy ]
   
 
   # GET /accounts or /accounts.json
   def index
-    # byebug
     @accounts = current_user.accounts
-    # authorize @accounts
+    @wallet = current_user.wallet
+    authorize @accounts
   end
 
   # GET /accounts/1 or /accounts/1.json
   def show
     authorize @account
+    # if authorize @account != true
+
+    # end
   end
 
   # GET /accounts/new
   def new
     @account = Account.new
-   
-
   end
 
   # GET /accounts/1/edit
@@ -33,15 +33,11 @@ class AccountsController < ApplicationController
     # authorize @accounts
     @account = Account.new(account_params)
     @account.user_id=current_user.id
-   
-
-  
-      if @account.save
-       redirect_to @account, notice: "Account was successfully created." 
-      else
-        render :new
-      end
-    
+    if @account.save
+      redirect_to @account, notice: "Account was successfully created." 
+    else
+      render :new
+    end
   end
 
   # PATCH/PUT /accounts/1 or /accounts/1.json
@@ -58,9 +54,9 @@ class AccountsController < ApplicationController
   # DELETE /accounts/1 or /accounts/1.json
   def destroy
     authorize @account
-      @account.destroy
-       redirect_to accounts_url, notice: "Account was successfully destroyed." 
-    end
+    @account.destroy
+    redirect_to accounts_url, notice: "Account was successfully destroyed." 
+  end
  
 
   private

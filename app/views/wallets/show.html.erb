@@ -1,9 +1,21 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-4">
+  </div>
+  <div class="col-4">
+  <table class="table">
+  <tbody>
+    <tr>
+      <th scope="row">Walletbalance:</th>
+      <td><%= @wallet.walletbalance %></td>
+    </tr>
+  </tbody>
+</table>
+<%= link_to 'Edit', edit_wallet_path(@wallet) , class: 'btn btn-outline-warning btn-xs' %> | 
+<%= link_to 'Back', accounts_path ,class: 'btn btn-outline-success btn-xs'  %>
 
-<p>
-  <strong>Walletbalance:</strong>
-  <%= @wallet.walletbalance %>
-</p>
+  </div>
 
-<%= link_to 'Edit', edit_wallet_path(@wallet) %> |
-<%= link_to 'Back', wallets_path %>
+  <div class="col-4">
+  </div>
+  
+</div>

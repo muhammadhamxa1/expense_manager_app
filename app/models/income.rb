@@ -1,2 +1,2 @@
-class Income < Transaction; 
+class Income < Transaction
 end

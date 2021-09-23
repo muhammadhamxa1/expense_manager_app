@@ -1,2 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "simple_calendar";
+
+.d_none{
+    display: none;
+}
