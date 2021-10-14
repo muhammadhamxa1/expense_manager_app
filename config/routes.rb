@@ -1,7 +1,10 @@
 
 Rails.application.routes.draw do
 
-  resources :groups
+  
+  resources :groups do 
+    resources :group_expenses
+  end
   resources :transactions
   resources :wallets
   resources :accounts

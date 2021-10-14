@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_23_072921) do
+ActiveRecord::Schema.define(version: 2021_09_27_105543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,32 @@ ActiveRecord::Schema.define(version: 2021_09_23_072921) do
     t.index ["user_id"], name: "index_accounts_on_user_id"
   end
 
+  create_table "expense_members", force: :cascade do |t|
+    t.bigint "group_expense_id"
+    t.float "borrow"
+    t.float "lent"
+    t.bigint "lenter_id"
+    t.bigint "borror_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["borror_id"], name: "index_expense_members_on_borror_id"
+    t.index ["group_expense_id"], name: "index_expense_members_on_group_expense_id"
+    t.index ["lenter_id"], name: "index_expense_members_on_lenter_id"
+    t.index ["user_id"], name: "index_expense_members_on_user_id"
+  end
+
+  create_table "group_expenses", force: :cascade do |t|
+    t.string "expense_name"
+    t.integer "expense_amount"
+    t.bigint "group_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["group_id"], name: "index_group_expenses_on_group_id"
+    t.index ["user_id"], name: "index_group_expenses_on_user_id"
+  end
+
   create_table "group_members", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "group_id"
@@ -39,6 +65,8 @@ ActiveRecord::Schema.define(version: 2021_09_23_072921) do
     t.string "group_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -97,6 +125,12 @@ ActiveRecord::Schema.define(version: 2021_09_23_072921) do
   end
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "expense_members", "group_expenses"
+  add_foreign_key "expense_members", "users"
+  add_foreign_key "expense_members", "users", column: "borror_id"
+  add_foreign_key "expense_members", "users", column: "lenter_id"
+  add_foreign_key "group_expenses", "users"
+  add_foreign_key "groups", "users"
   add_foreign_key "transactions", "users"
   add_foreign_key "wallets", "users"
 end

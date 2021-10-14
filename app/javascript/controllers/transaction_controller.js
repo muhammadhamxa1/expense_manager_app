@@ -4,6 +4,7 @@ export default class extends Controller {
   
   connect()
   {
+    console.log("hello")
     this.transferToIdTarget.disabled=true
     this.categorySelectTarget.hidden= true
     this.selectDateTarget.hidden= true

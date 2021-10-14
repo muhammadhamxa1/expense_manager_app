@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  borrow: 1.5
+  lent: 1.5
+  lenter_id: one
+  borror_id: one
+
+two:
+  borrow: 1.5
+  lent: 1.5
+  lenter_id: two
+  borror_id: two

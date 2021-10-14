@@ -4,6 +4,7 @@ class User::InvitationsController < Devise::InvitationsController
   #before_action :resource_from_invitation_token, only: [:edit]
   def create
     super
+    # byebug
     @user = User.invite!(invite_params, current_user)
     puts(@user.raw_invitation_token)
     # render json: { success: ['User created.'] }, status: :created
